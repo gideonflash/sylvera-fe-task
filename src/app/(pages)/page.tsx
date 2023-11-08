@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { getProjectsTitles } from "../lib/data/project";
-import { PageUrls } from "../lib/PageUrls";
+import { List } from "@/app/ui/Projects/List";
 
 export default async function Home() {
   const projects = await getProjectsTitles();
@@ -11,16 +10,8 @@ export default async function Home() {
   }
 
   return (
-    <div>
-      <ul>
-        {projects.map((projectTitle) => {
-          return (
-            <li key={projectTitle}>
-              <Link href={PageUrls.project(projectTitle)}>{projectTitle}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <List list={projects} />
+    </>
   );
 }

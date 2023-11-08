@@ -1,0 +1,9 @@
+.linkItem {
+  font-weight: 600;
+  font-size: 18px;
+  padding: 12px 6px;
+}
+
+.linkItem:hover {
+  color: var(--payne-grey);
+}
