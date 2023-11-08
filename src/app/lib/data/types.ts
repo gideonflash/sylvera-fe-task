@@ -3,7 +3,7 @@ export type ProjectMeasurementResponse = {
   feeds: {
     device_id: string;
     gps_lat: number;
-    gqs_lon: number;
+    gps_lon: number;
     timestamp: string;
   }[];
 };
@@ -17,5 +17,5 @@ export type FeedEntry = {
 
 export type ProjectInfo = {
   totalFeeds: number;
-  feeds: FeedEntry;
+  feed: FeedEntry[];
 };

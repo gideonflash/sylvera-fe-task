@@ -18,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <HeroImage src="/banner.png" alt="hero image" />
-        <main>{children}</main>
+        <main className={styles.container}>
+          <div className={styles.content}>{children}</div>
+        </main>
       </body>
     </html>
   );
