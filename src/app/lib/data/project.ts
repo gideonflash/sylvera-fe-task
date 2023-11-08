@@ -1,3 +1,4 @@
+import { getFeedEntries, parseTitleResponse } from "./dataUtils";
 import { FeedEntry, ProjectInfo, ProjectMeasurementResponse } from "./types";
 
 const BASE_API_URL = "https://pm25.lass-net.org/API-1.0.0";
@@ -9,25 +10,9 @@ export const getProjectsTitles = async (): Promise<string[]> => {
     throw new Error("Failed to fetching data");
   }
 
-  const projectTitlesAsArray = (await data.text()).split(/\r?\n/);
+  const responseText = await data.text();
 
-  return projectTitlesAsArray;
-};
-
-const getFeedEntries = (
-  projectInfo: ProjectMeasurementResponse,
-  limit = 10
-): FeedEntry[] => {
-  return projectInfo.feeds
-    .map((entry) => {
-      return {
-        deviceId: entry.device_id,
-        latitude: entry.gps_lat,
-        longitude: entry.gps_lon,
-        timestamp: new Date(entry.timestamp),
-      };
-    })
-    .slice(0, limit);
+  return parseTitleResponse(responseText);
 };
 
 export const getProjectByTitle = async (
