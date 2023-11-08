@@ -1,31 +1,30 @@
 import { getProjectByTitle } from "@/app/lib/data/project";
+import { Feed } from "@/app/ui/Feed/Feed";
+import styles from "./page.module.css";
 
 export default async function Page({ params }: { params: { title: string } }) {
   const projectInfo = await getProjectByTitle(params.title);
   const hasFeedMeasurement = projectInfo.feed.length;
 
   if (!hasFeedMeasurement) {
-    return <p>No feeds for {params.title}</p>;
+    return (
+      <p>
+        No feeds for project called{" "}
+        <span className={styles.inlineText}>{params.title}</span>
+      </p>
+    );
   }
 
   return (
     <div>
-      <h2>{params.title}</h2>
-      <h3>{projectInfo.totalFeeds}</h3>
-      <div>
-        <ul>
-          {projectInfo.feed.map((entry) => {
-            return (
-              <li key={entry.deviceId}>
-                <p>Id: {entry.deviceId}</p>
-                <p>Lat: {entry.latitude}</p>
-                <p>Lon: {entry.longitude}</p>
-                <p>Recorded on:{entry.timestamp.toUTCString()}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <h3 className={styles.readings}>
+        <span className={styles.inlineText}>Showing</span>{" "}
+        {projectInfo.feed.length}
+        <span className={styles.inlineText}> readings out of </span>
+        {projectInfo.totalFeeds}
+      </h3>
+
+      <Feed feed={projectInfo.feed} />
     </div>
   );
 }

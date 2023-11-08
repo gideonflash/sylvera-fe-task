@@ -1,0 +1,22 @@
+.feedItem {
+  border-radius: 10px;
+  border: 2px solid var(--grey);
+
+  margin-bottom: 24px;
+}
+
+.feedItemId {
+  font-weight: 200;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--grey);
+}
+
+.feedItemLocation {
+  padding: 10px 12px;
+}
+
+.FeedTimeStamp {
+  font-weight: 200;
+  padding: 10px 12px;
+}
